@@ -5,16 +5,19 @@ class Interface {
 
   fillCriptoOptions() {
     myapi.getData().then(criptas => {
-      console.log(criptas);
-    });
-    const criptomoney = document.querySelector("#criptomoneda");
-    let opt = "";
+      console.log(criptas.coins.Data);
+      console.log(criptas.coins);
+      const criptomoney = document.querySelector("#criptomoneda");
+      let opt = "";
 
-    //console.log(Object.keys(data));
-    // Object.keys(data.Data).forEach(item => {
-    //   //opt += `<option>${item.Data.CoinName}</option>`;
-    //   console.log(data.Data.item);
-    // });
+      for (const [key, value] of Object.entries(criptas.coins.Data)) {
+        if (value.IsTrading) {
+          console.log(value);
+          opt += `<option value="${value.Symbol}">${value.FullName}</option>`;
+        }
+      }
+      criptomoney.innerHTML = opt;
+    });
   }
 
   /**
