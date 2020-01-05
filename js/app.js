@@ -21,9 +21,22 @@ form.addEventListener("submit", e => {
   console.log(criptomoneySelected);
   if (criptomoneySelected === "" || moneySelected === "") {
     console.error("Select money and cripto!");
-    ui.showMessage("Both fields are mandatory!", "alert text-center bg-danger");
+    ui.showMessage(
+      "Both fields are mandatory!",
+      "alert text-center bg-danger",
+      2000
+    );
   } else {
     console.info("Selected money and cripto fetch data!");
-    ui.showMessage("Great!!! Working!", "alert bg-success");
+    //ui.showMessage("Great!!! Working!", "alert bg-success");
+    myapi
+      .getPriceData(criptomoneySelected, moneySelected)
+      .then(priceData => {
+        ui.showPrices(priceData, criptomoneySelected, moneySelected);
+      })
+      .catch(err => {
+        console.error("Err here!", err);
+        ui.showMessage(err, "alert bg-danger", 5000);
+      });
   }
 });

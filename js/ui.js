@@ -13,18 +13,40 @@ class Interface {
       let opt = "";
       for (const [key, value] of Object.entries(criptas.coins.Data)) {
         //todo: sort value for something
-        //if (!value.IsTrading) {
-        //console.log(value);
-        //opt += `<option value="${value.Symbol}">${value.FullName}</option>`;
-        const option = document.createElement("option");
-        option.value = value.Symbol;
-        option.appendChild(document.createTextNode(value.FullName));
-        criptomoney.appendChild(option);
-        //}
+        if (value.IsTrading) {
+          //console.log(value);
+          //opt += `<option value="${value.Symbol}">${value.FullName}</option>`;
+          const option = document.createElement("option");
+          option.value = value.Symbol;
+          option.appendChild(document.createTextNode(value.FullName));
+          criptomoney.appendChild(option);
+        }
       }
       //criptomoney.innerHTML = opt;
       console.timeEnd(timer);
     });
+  }
+
+  showPrices(priceData, cripto, money) {
+    let html = "";
+    const result = document.querySelector("#resultado");
+    const price = priceData.price.RAW[money][cripto];
+    const showPrice = price.PRICE.toFixed(6);
+    //console.log(priceData);
+    html += `
+    <div class="alert bg-success">
+    <h3>Result:</h3>
+    <p>Price from ${price.FROMSYMBOL} to ${price.TOSYMBOL} is ${showPrice} traided on ${price.LASTMARKET}</p>
+    </div>
+    `;
+    result.innerHTML = html;
+    // console.log(priceData.price);
+    // console.log(priceData.price.DISPLAY);
+    // console.log(priceData.price.RAW);
+    // console.log(priceData.price.RAW[money]);
+    // console.log(priceData.price.RAW[money][cripto]);
+    // console.log(priceData.price.DISPLAY[money]);
+    // console.log(priceData.price.DISPLAY[money][cripto]);
   }
 
   /**
@@ -32,7 +54,7 @@ class Interface {
    * @param {*} text
    * @param {*} classes
    */
-  showMessage(text, classes) {
+  showMessage(text, classes, timeout) {
     const div = document.createElement("div");
     div.className = classes;
     div.appendChild(document.createTextNode(text));
@@ -40,6 +62,6 @@ class Interface {
     message.appendChild(div);
     setTimeout(message => {
       document.querySelector(".mensajes div").remove();
-    }, 2000);
+    }, timeout);
   }
 }
