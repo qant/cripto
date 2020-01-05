@@ -32,11 +32,14 @@ class Interface {
     const result = document.querySelector("#resultado");
     const price = priceData.price.RAW[money][cripto];
     const showPrice = price.PRICE.toFixed(6);
-    //console.log(priceData);
+    const date = new Date(price.LASTUPDATE * 1000).toLocaleString("es-ES");
+    console.log(price);
     html += `
     <div class="alert bg-success">
     <h3>Result:</h3>
-    <p>Price from ${price.FROMSYMBOL} to ${price.TOSYMBOL} is ${showPrice} traided on ${price.LASTMARKET}</p>
+    <p>Price from ${price.FROMSYMBOL} to ${price.TOSYMBOL} is ${showPrice} </p>
+    </p>Traided on Last upDate: ${date}
+    </p>
     </div>
     `;
     result.innerHTML = html;
