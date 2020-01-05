@@ -2,7 +2,6 @@ class API {
   constructor(apikey) {
     this.API_KEY = apikey;
     this.allCoinListUrl = "https://min-api.cryptocompare.com/data/all/coinlist";
-    console.log(`${this.allCoinListUrl}?api_key=${this.API_KEY}`);
     this.getData(this.API_KEY, this.allCoinListUrl);
   }
 
@@ -17,8 +16,6 @@ class API {
     const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${coin}&tsyms=${money}&api_key=${this.API_KEY}`;
     const urlPrice = await fetch(url);
     const price = await urlPrice.json();
-    //if (price.Response)
-    //console.log(price.Response);
     if ("Error" !== price.Response) {
       return { price };
     } else {

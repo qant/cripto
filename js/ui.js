@@ -8,7 +8,6 @@ class Interface {
       //console.log(criptas.coins.Data);
       //console.log(criptas.coins);
       let timer = "options";
-      console.time(timer);
       const criptomoney = document.querySelector("#criptomoneda");
       let opt = "";
       for (const [key, value] of Object.entries(criptas.coins.Data)) {
@@ -33,7 +32,6 @@ class Interface {
     const price = priceData.price.RAW[money][cripto];
     const showPrice = price.PRICE.toFixed(6);
     const date = new Date(price.LASTUPDATE * 1000).toLocaleString("es-ES");
-    console.log(price);
     html += `
     <div class="alert bg-success">
     <h3>Result:</h3>
@@ -43,15 +41,14 @@ class Interface {
     </div>
     `;
     const res = document.querySelector("#resultado div");
-    console.log(res);
     if (res) {
       res.remove();
     }
-
-    document.querySelector(".contenido-spinner").style.display = "block";
+    const spiner = document.querySelector(".contenido-spinner");
+    spiner.style.display = "block";
 
     setTimeout(() => {
-      document.querySelector(".contenido-spinner").style.display = "none";
+      spiner.style.display = "none";
       result.innerHTML = html;
     }, 2000);
     //result.innerHTML = html;
