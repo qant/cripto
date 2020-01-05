@@ -42,7 +42,19 @@ class Interface {
     </p>
     </div>
     `;
-    result.innerHTML = html;
+    const res = document.querySelector("#resultado div");
+    console.log(res);
+    if (res) {
+      res.remove();
+    }
+
+    document.querySelector(".contenido-spinner").style.display = "block";
+
+    setTimeout(() => {
+      document.querySelector(".contenido-spinner").style.display = "none";
+      result.innerHTML = html;
+    }, 2000);
+    //result.innerHTML = html;
     // console.log(priceData.price);
     // console.log(priceData.price.DISPLAY);
     // console.log(priceData.price.RAW);
