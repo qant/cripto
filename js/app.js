@@ -1,7 +1,11 @@
 //https://www.cryptocompare.com/cryptopian/api-keys
 
 const form = document.getElementById("formulario");
+const myapi = new API(
+  "3023630ec634cd947aa6ca3db3888ccbe3c95c82ee8030980b6c043fe75b4846"
+);
 const ui = new Interface();
+myapi.getData();
 
 form.addEventListener("submit", e => {
   e.preventDefault();

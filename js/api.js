@@ -1,2 +1,15 @@
-const API_KEY =
-  "3023630ec634cd947aa6ca3db3888ccbe3c95c82ee8030980b6c043fe75b4846";
+class API {
+  constructor(apikey) {
+    this.API_KEY = apikey;
+    this.allCoinListUrl = "https://min-api.cryptocompare.com/data/all/coinlist";
+    console.log(`${this.allCoinListUrl}?api_key=${this.API_KEY}`);
+    this.getData(this.API_KEY, this.allCoinListUrl);
+  }
+
+  async getData(API_KEY, allCoinListUrl) {
+    const url = `${this.allCoinListUrl}?api_key=${this.API_KEY}`;
+    const urlCoins = await fetch(url);
+    const coins = await urlCoins.json();
+    return { coins };
+  }
+}
